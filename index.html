@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css" >
+
+    <title>Desafio Pokedex</title>
+  </head>
+  <body>
+        <div class="loader"></div>
+        <div class="contenido">
+            <nav class="navbar navbar-dark navbarPokemon">
+                <div class="container d-block text-center ">
+                    <img class="titulo" src="/img/pokedex.png" alt="titulo pokedex">
+                </div>
+            </nav>
+            <div class="container content-principal p-4 mb-4">
+                <div class="text-center">
+                    <img class="titulo-contenido mb-4" src="img/pokemon.png" alt="Titulo Pokemon">
+                </div>
+
+                <img class="spinner" src="img/spinner.gif" alt="spinner">
+
+                <div class="pokemon-card ml-1">
+                    <div class="row justify-content-center rowPokemon"></div>
+                </div>
+
+                <button id="more-pokemon" class="btn btn-warning btn-lg btn-block btn-outline-dark rounded-pill" data-nexturl="https://www.google.com">!Quiero ver mas Pokemones</button>
+            </div>
+        </div>
+
+    <!-- Inicio Modal ppal -->
+        <!-- Modal -->
+        <div class="modal fade" id="pokemonModal" tabindex="-1" aria-labelledby="pokemonModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-white" id="pokemonModalLabel">Modal title</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="card shadow p-3 mb-5 " style="width: 15rem;">
+                                    <span class="circulo"></span>
+                                    <img src="#" class="img-modal card-img-top text-center bg-card-img p-2" alt="">
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="">
+                                    <h5>Tipos</h5>
+                                    <ol class="pokemon-types"></ol>
+                                </div>
+                                <div class="">
+                                    <h5>Habilidades</h5>
+                                    <ol class="pokemon-abilities"></ol>
+                                </div>
+                                <div class="">
+                                    <h5>5 primeros Movimientos</h5>
+                                    <ol class="pokemon-move"></ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal ppal -->
+
+    <!-- Inicio Modal Daño -->
+    <div class="modal fade" id="pokemonDanioModal" tabindex="-1" aria-labelledby="pokemonDanioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-modal-sec">
+                    <h5 class="modal-title text-white" id="pokemonDanioModalLabel">Daño</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <strong>Daño doble recibido</strong>
+                        <ul id="double_damage_from"></ul>
+                    <strong>Daño doble inflingido</strong>
+                        <ul id="double_damage_to"></ul>
+                    <strong>Daño medio recibido</strong>
+                        <ul id="half_damage_from"></ul>
+                    <strong>Daño medio inflingido</strong>
+                        <ul id="half_damage_to"></ul>
+                    <strong>Sin Daño recibido</strong>
+                        <ul id="no_damage_from"></ul>
+                    <strong>Sin Daño inflingido</strong>
+                        <ul id="no_damage_to"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Daño -->
+
+    <!-- Inicio Modal Habilidad -->
+    <div class="modal fade" id="pokemonHabilityModal" tabindex="-1" aria-labelledby="pokemonHabilityModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-modal-sec">
+                    <h5 class="modal-title text-white" id="pokemonHabilityModalLabel">Habilidad</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <strong>Pokemones que comparten Habilidad</strong>
+                    <ul id="abilityPokemon"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Habilidad -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="JavaScript.js"></script>
+</body>
+</html>
